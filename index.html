@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherBoard</title>
+    <!-- Materialize CSS -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script defer src="./assets/js/script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1> WeatherBoard
+        </h1>
+    </header>
+    <aside class="cityPanel">
+        <section id="citySearch">
+            <h2> Search For a City
+            </h2>
+            <input id='userSearch' type="text" placeholder="Chicago">
+            <button type="button" id='searchBtn'> Get the Weather
+</button>
+        </section>
+        <section class="prvCities">
+            <p id='noRecent'>
+                Sorry, There hasn 't been a recent search yet.
+                <br> Try one now!
+            </p>
+        </section>
+    </aside>
+    <main>
+        <section id='currentFocus'>
+        </section>
+        <section id="fiveDayContainer">
+
+        </section>
+    </main>
+    <footer id="footer">
+
+    </footer>
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</body>
+
+</html>
