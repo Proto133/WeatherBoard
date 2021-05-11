@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeatherBoard</title>
     <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Material Icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -15,25 +21,27 @@
 
 <body>
     <header>
-        <h1> WeatherBoard
-        </h1>
+        <h1> WeatherBoard</h1>
     </header>
-    <aside class="cityPanel">
-        <section id="citySearch">
-            <h2> Search For a City
-            </h2>
-            <input id='userSearch' type="text" placeholder="Chicago">
-            <button type="button" id='searchBtn'> <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Get the Weather</a></button>
-        </section>
-        <section class="prvCities">
-            <p id='noRecent'>
-                Sorry, There hasn 't been a recent search yet.
-                <br> Try one now!
-            </p>
-        </section>
-    </aside>
     <main>
+        <aside class="cityPanel">
+            <section id="citySearch">
+                <h2> Search For a City</h2>
+                <input id='userSearch' type="text" placeholder="Chicago">
+                <a class="waves-effect waves-light btn">
+                    <button type="button" id='searchBtn'> <i class="material-icons left">cloud</i>Get the Weather</button></a>
+            </section>
+            <section class="prvCities">
+
+                <p id='noRecent'>
+                    Sorry, There hasn 't been a recent search yet.
+                    <br> Try one now!
+                </p>
+            </section>
+        </aside>
+
         <section id='currentFocus'>
+            <h4 class="curFocusH4"></h4>
         </section>
         <section id="fiveDayContainer">
 

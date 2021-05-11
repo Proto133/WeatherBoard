@@ -1,3 +1,128 @@
+body {
+    max-height: 90%;
+    background-color: black;
+}
+
+header {
+    top: 0;
+    background-image: url(https://loremflickr.com/320/240/weather);
+    background-size: cover;
+}
+
+header[background-image] {
+    transform: translateY(50%);
+}
+
 h1 {
+    background-color: rgba(255, 255, 255, 0.75);
+    margin-top: 0;
     text-align: center;
+}
+
+aside {
+    background-color: white;
+}
+
+.prvCities p {
+    text-align: center;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+}
+
+a {
+    margin-left: 10%;
+    width: 80%;
+}
+
+.cityPanel {
+    /* margin-right: .5rem; */
+    grid-column: 1;
+    grid-row: 1 / 5;
+}
+
+#citySearch h2 {
+    font-size: 2rem;
+}
+
+#fiveDayContainer {
+    background-color: violet;
+    grid-column: 2;
+    grid-row: 3 / 5;
+}
+
+#currentFocus {
+    border: 1px solid gray;
+    grid-column: 2;
+    grid-row: 1 / 3;
+}
+
+.curFocusH4 {
+    margin-top: 0;
+    font-variant: small-caps;
+    background-color: rgba(255, 255, 255, 0.45);
+    text-align: center;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    grid-template-rows: repeat(4, 1fr);
+    width: 90%;
+    min-height: 600px;
+    max-height: 95%;
+    margin: 0 2.5%
+}
+
+.card h4 {
+    text-align: center;
+    font-variant: small-caps;
+}
+
+#fiveDayContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: .5rem;
+    padding: .5rem .5rem;
+}
+
+.forecastCard1 {
+    grid-column: 1;
+}
+
+.forecastCard2 {
+    grid-column: 2;
+}
+
+.forecastCard3 {
+    grid-column: 3;
+}
+
+.forecastCard4 {
+    grid-column: 4;
+}
+
+.forecastCard5 {
+    grid-column: 5;
+}
+
+.forecastCard1,
+.forecastCard2,
+.forecastCard3,
+.forecastCard4,
+.forecastCard5 {
+    background-color: white;
+    text-align: center;
+    height: 100%;
+    Width: 100%;
+}
+
+.forecastCard1 h4,
+.forecastCard2 h4,
+.forecastCard3 h4,
+.forecastCard4 h4,
+.forecastCard5 h4 {
+    font-size: .5rem;
 }
