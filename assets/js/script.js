@@ -2,6 +2,9 @@
 M.AutoInit();
 
 //Start my Script
+dayjs.extend(window.dayjs_plugin_localizedFormat)
+
+
 //Open API variables
 const apiKey = '&appid=d10c1d7640a2ce7fdd5367e25b6d3962'
 const baseUrl = 'https://api.openweathermap.org/data/2.5/forecast?q='
@@ -62,7 +65,7 @@ function requestAPI() {
         respName = response.city.name;
         latitudeResp = 'lat=' + response.city.coord.lat;
         longitudeResp = '&lon=' + response.city.coord.lon;
-        console.log(response);
+        console.log(respData);
         var h4El = $('.curFocusH4');
         var curFocusStyles = {
             backgroundImage: "url(https://loremflickr.com/600/600/" + respName + ";",
@@ -71,39 +74,65 @@ function requestAPI() {
 
         $(h4El).text(respName);
         $('#currentFocus').css(curFocusStyles);
-        genForecast();
+        // genForecast();
 
     }).then(function() {
         $.ajax({
             url: oneCallBaseUrl + latitudeResp + longitudeResp + extraParams + excludeOptions + apiKey,
             method: 'GET',
         }).then(function(oneCallResponse) {
+            console.log(oneCallBaseUrl + latitudeResp + longitudeResp + extraParams + excludeOptions + apiKey)
             console.log('One Call ', oneCallResponse);
             var dailyInfo = oneCallResponse.daily;
-            var lowtemp = dailyInfo[0].temp.min
 
+
+
+
+
+            //   for (var i = labelIndex-1; i<labelIndex-1;i++) {
+
+            //     var forecastCard = $('<div class="forecastCard' + labelIndex + '">')
+            //     var h4El = $('<h4>'+dailyInfo[i]. + '</h4>')
+            //     $('.forecastCard' + labelIndex).remove();
+            //     $('#fiveDayContainer').append(forecastCard)
+            //     forecastCard.append(h4El)
+
+            console.log(oneCallResponse.daily[0].temp.min);
+
+            for (var i = 1; i < 6; i++) {
+                var l = (i - 1) * 8
+                console.log('i=', i)
+                console.log('l=', l)
+                var localDateFormat = dayjs(respData[l].dt_txt).format('LLLL')
+                var weatherDescriptionDetail = dailyInfo[i].weather[0].description
+                var weatherDescription = dailyInfo[i].weather[0].main
+                var highTemp = dailyInfo[i].temp.max
+                var lowTemp = dailyInfo[i].temp.min
+                var humidity = dailyInfo[i].humidity
+                var uvIndex = dailyInfo[i].uvi
+
+                var forecastCard = $('<div class="forecastCard' + i + '">')
+                var h4El = $('<h4>' + localDateFormat + '</h4>')
+                var h5weatherDescriptEl = $('<h5>' + weatherDescription + '</h5>')
+                var detailDivEl = $('<div class="detailDiv">')
+                var pLowEl = $('<p> <span> Low:</span> ' + lowTemp + '&#176;</p>')
+                var pHighEl = $('<p> <span>High:</span> ' + highTemp + '&#176;</p>')
+                var pHumidityEl = $('<p> <span>Humidity:</span> ' + humidity + '</p>')
+                var pDescriptionEl = $('<p class="fiveDayDescription">' + weatherDescriptionDetail + '</p>')
+                var pUviEl = $('<p><span> UV Index:</span> ' + uvIndex + '</p>')
+                $('#fiveDayContainer').append(forecastCard)
+                forecastCard.append(h4El);
+                forecastCard.append(h5weatherDescriptEl);
+                forecastCard.append(pDescriptionEl);
+                forecastCard.append(detailDivEl);
+                detailDivEl.append(pHighEl);
+                detailDivEl.append(pLowEl);
+                detailDivEl.append(pHumidityEl);
+                detailDivEl.append(pUviEl);
+
+            }
         })
-
-        //   for (var i = labelIndex-1; i<labelIndex-1;i++) {
-
-        //     var forecastCard = $('<div class="forecastCard' + labelIndex + '">')
-        //     var h4El = $('<h4>'+dailyInfo[i]. + '</h4>')
-        //     $('.forecastCard' + labelIndex).remove();
-        //     $('#fiveDayContainer').append(forecastCard)
-        //     forecastCard.append(h4El)
     })
-}
-
-function genForecast() {
-    for (var i = 1, l = 0; i < 6, l < ; i++) {
-        console.log('i=', i)
-        console.log(i - 1)
-        var forecastCard = $('<div class="forecastCard' + i + '">')
-        var h4El = $('<h4>' + respData[i - 1].dt_txt + '</h4>')
-
-        $('#fiveDayContainer').append(forecastCard)
-        forecastCard.append(h4El);
-    }
 }
 
 
