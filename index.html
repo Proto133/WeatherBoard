@@ -32,25 +32,29 @@
                     <button type="button" id='searchBtn'> <i class="material-icons left">cloud</i>Get the Weather</button></a>
             </section>
             <section class="prvCities">
-
                 <p id='noRecent'>
                     Sorry, There hasn 't been a recent search yet.
                     <br> Try one now!
                 </p>
             </section>
         </aside>
-
         <section id='currentFocus'>
-            <h4 class="curFocusH4"></h4>
+            <header class='curFocus' id='curFocusHeader'>
+                <h3 id="curFocusH3"></h3>
+            </header>
+
+            <div class="card" id="leftCurDay">
+
+            </div>
+            <div class="card" id="rightCurDay">
+
+            </div>
         </section>
         <section id="fiveDayContainer">
-
         </section>
     </main>
     <footer id="footer">
-
     </footer>
-
     <!-- CDN example (unpkg) -->
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="https://unpkg.com/dayjs@1.8.21/plugin/localizedFormat.js"></script>
