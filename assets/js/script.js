@@ -156,7 +156,7 @@ function requestAPI() {
             var curDayFeelEl = $('<p id="curFeel"><span>Feels Like:</span> ' + Math.round(curDayFeel) + '&#176;</p>')
             var curDayHighEl = $('<p id="curDayHi" class="curDayHiLo"><span>High:</span> ' + curDayHigh + '&#176;</p>')
             var curDayLowEl = $('<p id="curDayLo" class="curDayHiLo"><span>Low:</span> ' + curDayLow + '&#176</p>')
-            var curDayUVEl = $('<p id="curDayUV"><span>UV Index:</span> ' + curDayUV + '</p>')
+            var curDayUVEl = $('<div id="curDayUV"><p ><span>UV Index:</span> ' + curDayUV + '</p></div>')
             var curDayHumidityEl = $('<p id="curDayHumidity" class="curDayHiLo"><span>Humidity:</span> ' + curDayHumidity + '&#x25;</p>')
             var curDayWindEl = $('<p id="curDayWind" class="curDayHiLo"><span>Wind Speed:</span> ' + curDayWindSpeed + 'MPH</p>')
             var trimCurDetail = curDayDetail.replace(/\s+/g, '');
@@ -183,10 +183,27 @@ function requestAPI() {
             //Appending container
             $('#currentFocus').css(curFocusStyles);
 
+            $(function() {
+                if (curDayUV <= 2) {
+                    $('#curDayUV').removeClass('uvDanger uvHigh uvCaution');
+                    $('#curDayUV').addClass('uvClear');
+                } else if (curDayUV >= 3 && curDayUV <= 5) {
+                    $('#curDayUV').removeClass('uvDanger uvHigh uvClear');
+                    $('#curDayUV').addClass('uvCaution');
+                } else if (curDayUV >= 6 && curDayUV <= 7) {
+                    $('#curDayUV').removeClass('uvDanger uvCaution uvClear');
+                    $('#curDayUV').addClass('uvHigh');
+                } else {
+                    $('#curDayUV').removeClass('uvHigh uvClear uvCaution');
+                    $('#curDayUV').addClass('uvDanger')
+                }
+            })
+
         })
+
+
     })
 }
-
 
 
 
