@@ -29,25 +29,21 @@ function storeRecent() {
     $('#rightCurDay').children().remove();
     $('#curFocusHeader').children().remove();
     userInput = $('#userSearch').val();
-    if (labelIndex < 6) {
+    if (labelIndex <= 5) {
         localStorage.setItem('Recent Search ' + labelIndex, userInput);
-        console.log(userInput)
-
     } else {
         labelIndex = 1;
         localStorage.setItem('Recent Search ' + labelIndex, userInput);
         console.log(userInput)
     }
-
     updateRecent();
-
 }
 
 //UDPDATE RECENT SEARCH LIST
 function updateRecent() {
     $('#recentcityDiv' + labelIndex).remove();
     var recentCity = localStorage.getItem('Recent Search ' + labelIndex);
-    var recCityDivEl = $('<div class="card" id="recentcityDiv' + labelIndex + '">"');
+    var recCityDivEl = $('<div class="card" id="recentcityDiv' + labelIndex + '" onclick="recentClick()">');
     var recCityH4El = $('<h4>' + recentCity + '</h4></div>')
     $('#noRecent').remove();
     $('#recentcityDiv' + labelIndex).remove();
@@ -56,6 +52,7 @@ function updateRecent() {
     $(recCityDivEl).append(recCityH4El);
     console.log(labelIndex)
     labelIndex++;
+    requestAPI();
 }
 
 //AJAX REQUEST
@@ -71,10 +68,6 @@ function requestAPI() {
         console.log(respData);
         var h3El = $('<h3 id=curFocusH3>' + respName + '</h3>');
         $('#curFocusHeader').append(h3El);
-
-
-
-
     }).then(function() {
         $.ajax({
             url: oneCallBaseUrl + latitudeResp + longitudeResp + extraParams + excludeOptions + apiKey,
@@ -84,17 +77,12 @@ function requestAPI() {
             console.log('One Call ', oneCallResponse);
             var dailyInfo = oneCallResponse.daily;
             var curInfo = oneCallResponse.current;
-
             console.log(oneCallResponse.daily[0].temp.min);
-
+            //Parse through 2 indices concurrently
             for (var i = 1; i < 6; i++) {
                 if (i > 1) {
                     var l = (i - 1) * 8
                 } else { l = 1 }
-                console.log('i=', i)
-                console.log('l=', l)
-
-
                 //Create Variables locating specific response data for Forecast card
                 var localDayFormat = dayjs(respData[l].dt_txt).format('dddd')
                 var localDateFormat = dayjs(respData[l].dt_txt).format('MMM / D / YYYY')
@@ -198,15 +186,16 @@ function requestAPI() {
                     $('#curDayUV').addClass('uvDanger')
                 }
             })
-
         })
-
-
     })
 }
 
+function recentClick() {
+    userInput = this.value;
+    console.log(this.value);
+    storeRecent();
+}
 
 
-$('#searchBtn').on('click', storeRecent);
-$('#searchBtn').on('click', requestAPI);
+$('.btn').on('click', storeRecent);
 // $('#searchBtn').on('click', displayForecast);
