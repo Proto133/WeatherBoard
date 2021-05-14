@@ -3,6 +3,15 @@
         height: 100%;
         background-color: black;
     }
+    /* body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+    
+    main {
+        flex: 1 0 auto;
+    } */
     
     #wrapper {
         background-size: cover;
@@ -14,17 +23,17 @@
     
     header {
         top: 0;
-        background-color: rgba(255, 255, 255 .30)
+        /* background-color: #212121 */
     }
     
     h1 {
-        background-color: rgba(255, 255, 255, 0.75);
+        background-color: #212121;
         margin-top: 0;
         text-align: center;
     }
     
     aside {
-        max-height: 800px;
+        height: 100%;
         background-color: white;
         grid-row-start: 1;
         grid-row-end: 11;
@@ -62,7 +71,7 @@ supported by Chrome, Edge, Opera and Firefox */
     }
     
     #userSearch {
-        width: 100%;
+        width: 90%;
         margin-left: 2.5%;
     }
     
@@ -80,9 +89,8 @@ supported by Chrome, Edge, Opera and Firefox */
         grid-template-columns: 3fr 8fr;
         grid-template-rows: repeat(4, 1fr);
         width: 90%;
-        min-height: 600px;
-        max-height: 800px;
-        margin: 0 5% 1% 5%;
+        height: 77%;
+        margin: 0 5% 1%;
     }
     
     #currentFocus {
@@ -341,22 +349,23 @@ supported by Chrome, Edge, Opera and Firefox */
     .modal {
         z-index: 7;
     }
-    
-    #footer {
+    /* #footer {
         position: absolute !important;
         bottom: 0 !important;
         background-color: black;
         width: 100%;
-        height: 5%;
+        height: 2.5%;
         margin: 0;
         padding-top: 5%;
         color: lightgrey;
         text-align: center;
+        z-index: 0;
     }
     
     #footer a {
         margin: 0;
     }
+     */
     
     @media screen and (max-width: 768px) {
         main {
@@ -598,12 +607,12 @@ supported by Chrome, Edge, Opera and Firefox */
             height: 100%;
             Width: 92%;
         }
-        #footer {
+        /* #footer {
             position: absolute;
             bottom: 10px;
             left: 50%;
             transform: translateX(-50%)
-        }
+        } */
         .detailDiv p {
             margin: 00 1rem 0;
             font-size: 1rem;

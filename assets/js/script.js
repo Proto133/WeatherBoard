@@ -5,6 +5,7 @@ $(document).ready(function() {
 });
 window.onload = function() {
         $('.modal-close').hide()
+        $('#currentFocus').hide();
     }
     //Start my Script
 dayjs.extend(window.dayjs_plugin_localizedFormat)
@@ -35,7 +36,7 @@ function validate() {
         $('.modal').show();
         $('.modal-close').show();
         return false;
-    } else if (!/^[a-zA-Z]*$/g.test(userInput)) {
+    } else if (!/^[a-z A-Z]*$/g.test(userInput)) {
         $('.modal').show();
         $('.modal-close').show();
         return false;
@@ -75,6 +76,7 @@ var recCity
 var recCityH4El
     //UDPDATE RECENT SEARCH LIST
 function updateRecent() {
+    $('#currentFocus').show();
     $('#recentcityDiv' + labelIndex).remove();
     recentCity = localStorage.getItem('Recent Search ' + labelIndex);
     recCityDivEl = $('<div class="card" id="recentcityDiv' + labelIndex + '"></div>');
