@@ -1,7 +1,12 @@
 //Initialize Materalize Components
 M.AutoInit();
-
-//Start my Script
+$(document).ready(function() {
+    $('.modal').modal();
+});
+window.onload = function() {
+        $('.modal-close').hide()
+    }
+    //Start my Script
 dayjs.extend(window.dayjs_plugin_localizedFormat)
 
 
@@ -22,13 +27,38 @@ var userInput
 var respName
 var respData
 
+//Validate search parameters
+function validate() {
+    userInput = $('#userSearch').val();
+    userInput.trim()
+    if (userInput == "") {
+        $('.modal').show();
+        $('.modal-close').show();
+        return false;
+    } else if (!/^[a-zA-Z]*$/g.test(userInput)) {
+        $('.modal').show();
+        $('.modal-close').show();
+        return false;
+    } else {
+
+        storeRecent();
+    }
+}
+
+//close modal if popped 
+$('.modal-close').on('click', function() {
+    $('.modal').hide();
+    $('.modal-close').hide();
+    $('#userSearch').focus();
+})
+
 //Store the recent city in localStorage
 function storeRecent() {
     $('#fiveDayContainer').children().remove('div');
     $('#leftCurDay').children().remove();
     $('#rightCurDay').children().remove();
     $('#curFocusHeader').children().remove();
-    userInput = $('#userSearch').val();
+
 
     if (labelIndex <= 5) {
         localStorage.setItem('Recent Search ' + labelIndex, userInput);
@@ -39,7 +69,7 @@ function storeRecent() {
     }
     updateRecent();
 }
-
+//Declare recent city related variables globally to be called later.
 var recCityDivEl
 var recCity
 var recCityH4El
@@ -47,15 +77,15 @@ var recCityH4El
 function updateRecent() {
     $('#recentcityDiv' + labelIndex).remove();
     recentCity = localStorage.getItem('Recent Search ' + labelIndex);
-    recCityDivEl = $('<div class="card" id="recentcityDiv' + labelIndex + '">');
-    recCityH4El = $('<h4>' + recentCity + '</h4></div>')
+    recCityDivEl = $('<div class="card" id="recentcityDiv' + labelIndex + '"></div>');
+    recCityH4El = $('<h4>' + recentCity + '</h4>')
     recCityH4El.attr('data-name', recentCity)
     $('#noRecent').remove();
     $('#recentcityDiv' + labelIndex).remove();
     console.log('#recentcityDiv' + labelIndex);
     $('aside').children('.prvCities').prepend(recCityDivEl);
     $(recCityDivEl).append(recCityH4El);
-    console.log(labelIndex)
+    $(recCityDivEl).addClass('noselect');
     labelIndex++;
     requestAPI();
 }
@@ -70,6 +100,8 @@ function requestAPI() {
     $('#leftCurDay').children().remove();
     $('#rightCurDay').children().remove();
     $('#curFocusHeader').children().remove();
+
+    console.log(baseUrl + userInput + extraParams + apiKey)
     $.ajax({
         url: baseUrl + userInput + extraParams + apiKey,
         method: 'GET',
@@ -103,8 +135,8 @@ function requestAPI() {
                 var localDateFormat = dayjs(respData[l].dt_txt).format('MMM / D / YYYY')
                 var weatherDescriptionDetail = dailyInfo[i].weather[0].description
                 var weatherDescription = dailyInfo[i].weather[0].main
-                var highTemp = dailyInfo[i].temp.max
-                var lowTemp = dailyInfo[i].temp.min
+                var highTemp = Math.round(dailyInfo[i].temp.max)
+                var lowTemp = Math.round(dailyInfo[i].temp.min)
                 var humidity = dailyInfo[i].humidity
                 var uvIndex = dailyInfo[i].uvi
 
@@ -142,10 +174,10 @@ function requestAPI() {
             console.log(curDate)
             var curDayDesc = curInfo.weather[0].main
             var curDayDetail = curInfo.weather[0].description
-            var curDayTemp = curInfo.temp
-            var curDayFeel = curInfo.feels_like
-            var curDayHigh = currentDay.temp.max
-            var curDayLow = currentDay.temp.min
+            var curDayTemp = Math.round(curInfo.temp)
+            var curDayFeel = Math.round(curInfo.feels_like)
+            var curDayHigh = Math.round(currentDay.temp.max)
+            var curDayLow = Math.round(currentDay.temp.min)
             var curDayUV = curInfo.uvi
             var curDayWindSpeed = curInfo.wind_speed
             var curDayHumidity = curInfo.humidity
@@ -155,18 +187,20 @@ function requestAPI() {
             var curDateEl = $('<p id="curDate">' + curDate + '</p>')
             var curDayDescEl = $('<h5 id="curFocusDecription">' + curDayDesc + '</h5>')
             var curDayDetailEl = $('<h5 id="curFocusDetail">' + curDayDetail + '</h5>')
-            var curDayTempEl = $('<p id="curTemp" >' + Math.round(curDayTemp) + '&#176;</p>')
+            var curDayTempEl = $('<p id="curTemp" >' + curDayTemp + '&#176;</p>')
             var curDayFeelEl = $('<p id="curFeel"><span>Feels Like:</span> ' + Math.round(curDayFeel) + '&#176;</p>')
             var curDayHighEl = $('<p id="curDayHi" class="curDayHiLo"><span>High:</span> ' + curDayHigh + '&#176;</p>')
             var curDayLowEl = $('<p id="curDayLo" class="curDayHiLo"><span>Low:</span> ' + curDayLow + '&#176</p>')
             var curDayUVEl = $('<div id="curDayUV"><p ><span>UV Index:</span> ' + curDayUV + '</p></div>')
             var curDayHumidityEl = $('<p id="curDayHumidity" class="curDayHiLo"><span>Humidity:</span> ' + curDayHumidity + '&#x25;</p>')
-            var curDayWindEl = $('<p id="curDayWind" class="curDayHiLo"><span>Wind Speed:</span> ' + curDayWindSpeed + 'MPH</p>')
+            var curDayWindEl = $('<p id="curDayWind" class="curDayHiLo"><span>Wind Speed:</span> ' + curDayWindSpeed + ' MPH</p>')
             var trimCurDetail = curDayDetail.replace(/\s+/g, '');
+            var trimCity = respName.replace(/\s+/g, '');
             var curFocusStyles = {
-                backgroundImage: "url(https://loremflickr.com/600/600/" + trimCurDetail + ";",
+                backgroundImage: "url(https://loremflickr.com/900/900/" + trimCurDetail + "," + trimCity + ";",
                 boxShadow: "1px 4px 11px 4px rgba(0, 0, 0, 0.34);",
             }
+            console.log(curFocusStyles.backgroundImage)
 
             //Appending Header
             $('#curFocusHeader').append(curDayDescEl);
@@ -184,21 +218,23 @@ function requestAPI() {
             $('#rightCurDay').append(curDayUVEl);
 
             //Appending container
-            $('#currentFocus').css(curFocusStyles);
+            $('#wrapper').css(curFocusStyles);
 
             $(function() {
                 if (curDayUV <= 2) {
-                    $('#curDayUV').removeClass('uvDanger uvHigh uvCaution');
-                    $('#curDayUV').addClass('uvClear');
+                    // $('#curDayUV').removeClass('uvDanger uvHigh uvCaution');
+                    // $('#curDayUV').addClass('uvClear');
+                    $('#curDayUV p').removeClass('uvDanger uvHigh uvCaution');
+                    $('#curDayUV p').addClass('uvClear');
                 } else if (curDayUV >= 3 && curDayUV <= 5) {
-                    $('#curDayUV').removeClass('uvDanger uvHigh uvClear');
-                    $('#curDayUV').addClass('uvCaution');
+                    $('#curDayUV p').removeClass('uvDanger uvHigh uvClear');
+                    $('#curDayUV p').addClass('uvCaution');
                 } else if (curDayUV >= 6 && curDayUV <= 7) {
-                    $('#curDayUV').removeClass('uvDanger uvCaution uvClear');
-                    $('#curDayUV').addClass('uvHigh');
+                    $('#curDayUV p').removeClass('uvDanger uvCaution uvClear');
+                    $('#curDayUV p').addClass('uvHigh');
                 } else {
-                    $('#curDayUV').removeClass('uvHigh uvClear uvCaution');
-                    $('#curDayUV').addClass('uvDanger')
+                    $('#curDayUV p').removeClass('uvHigh uvClear uvCaution');
+                    $('#curDayUV p').addClass('uvDanger')
                 }
 
             })
@@ -214,5 +250,5 @@ $('.prvCities').on('click', '.card', function(event) {
     requestAPI();
 })
 
-$('.btn').on('click', storeRecent);
+$('.btn').on('click', validate);
 // $('#searchBtn').on('click', displayForecast);

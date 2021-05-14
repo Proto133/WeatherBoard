@@ -1,297 +1,611 @@
-body {
-    max-height: 90%;
-    background-color: black;
-}
-
-header {
-    top: 0;
-    background-color: rgba(255, 255, 255 .30)
-}
-
-h1 {
-    background-color: rgba(255, 255, 255, 0.75);
-    margin-top: 0;
-    text-align: center;
-}
-
-aside {
-    max-height: 800px;
-    background-color: white;
-}
-
-.prvCities p {
-    text-align: center;
-}
-
-button {
-    border: none;
-    background-color: transparent;
-}
-
-a {
-    margin-left: 10%;
-    width: 80%;
-}
-
-.cityPanel {
-    /* margin-right: .5rem; */
-    grid-column: 1;
-    grid-row: 1 / 5;
-}
-
-#citySearch h2 {
-    font-size: 2rem;
-}
-
-main {
-    display: grid;
-    grid-template-columns: 4fr 8fr;
-    grid-template-rows: repeat(4, 1fr);
-    width: 90%;
-    min-height: 600px;
-    max-height: 800px;
-    margin: 0 5% 5% 5%;
-}
-
-#currentFocus {
-    background-color: rgba(255, 255, 255, 0.5);
-    background-size: cover;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: repeat(5, 1fr);
-    border: 1px solid gray;
-    grid-column: 2;
-    grid-row: 1 / 3;
-    max-height: 400px;
-}
-
-#curFocusHeader {
-    display: grid;
-    position: relative;
-    grid-template-columns: repeat(5 1fr);
-    grid-template-rows: 1fr 1fr;
-    grid-column: 1/3;
-}
-
-#curFocusHeader h5 {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-#curFocusDecription {
-    grid-row: 2;
-    grid-column: 1/ 3;
-    margin: 0;
-    padding-top: 2.5%;
-    text-align: left;
-    background-color: rgba(233, 233, 233, .75);
-    text-transform: capitalize;
-}
-
-#curFocusDetail {
-    grid-column: 3 /5;
-    grid-row: 2;
-    margin: 0;
-    padding-top: 2.5%;
-    background-color: rgba(233, 233, 233, 0.75);
-    text-align: left;
-    text-transform: capitalize;
-}
-
-#curFocusH3 {
-    margin: 0;
-    font-weight: bold;
-    border-bottom: 1px solid black;
-    font-variant: small-caps;
-    grid-column: 1 / 5;
-    text-align: center;
-    background-color: rgb(233, 233, 233, .8);
-}
-
-#curDate {
-    margin-top: 0;
-    text-align: center;
-}
-
-#curTemp {
-    text-align: center;
-    font-size: 7rem;
-    margin: -50px 0 0 0;
-}
-
-#curFeel {
-    font-size: 2rem;
-    margin: 0;
-    padding: 1rem;
-}
-
-.curDayHiLo {
-    margin: 0;
-    font-size: 1.5rem;
-    max-height: 50px;
-    padding-left: 2rem;
-}
-
-#curDayUV {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 4;
-    text-align: center;
-    font-size: 1.5rem;
-    max-width: 80%;
-    margin: 0 5%;
-    padding-bottom: 4rem;
-}
-
-.uvDanger {
-    background-color: rgba(255, 0, 0, 0.75);
-}
-
-.uvHigh {
-    background-color: rgba(255, 166, 0, 0.75)
-}
-
-.uvCaution {
-    background-color: rgba(255, 255, 0, 0.75);
-}
-
-.uvClear {
-    background-color: rgba(5, 143, 0, 0.75);
-}
-
-#curDayHi {
-    grid-column: 1;
-    grid-row: 1;
-}
-
-#curDayLo {
-    grid-column: 2/ 4;
-    grid-row: 1;
-    /* padding-left: 0; */
-}
-
-#curDayHumidity {
-    grid-column: 1/4;
-    grid-row: 2;
-    padding-top: 1rem;
-}
-
-#curDayWind {
-    grid-column: 1/4;
-    grid-row: 3;
-}
-
-#leftCurDay h5,
-#rightCurDay h5 {
-    margin-bottom: 0;
-    text-align: center;
-}
-
-#leftCurDay {
-    border-right: 5px solid black;
-    background-color: rgba(255, 255, 255, 0.7);
-    margin-top: 0;
-    grid-column: 1;
-    grid-row: 2/6;
-    box-shadow: none;
-    margin-bottom: 0;
-    max-height: 100%;
-}
-
-#rightCurDay {
-    display: grid;
-    padding-top: 2rem;
-    grid-template-columns: 45% 10% 45%;
-    grid-template-rows: 10% 20% 20% 20% 10%;
-    gap: 1.5rem;
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.7);
-    margin-top: 0;
-    grid-column: 2 /3;
-    grid-row: 2 /6;
-    box-shadow: none;
-    margin-bottom: 0;
-    max-height: 100%;
-}
-
-#fiveDayContainer {
-    /* background-color: violet; */
-    grid-column: 2;
-    grid-row: 3 / 5;
-    max-height: 400px;
-}
-
-.card h4 {
-    text-align: center;
-    font-variant: small-caps;
-}
-
-#fiveDayContainer {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: .5rem;
-    padding: .5rem .5rem;
-}
-
-.forecastCard1 {
-    grid-column: 1;
-}
-
-.forecastCard2 {
-    grid-column: 2;
-}
-
-.forecastCard3 {
-    grid-column: 3;
-}
-
-.forecastCard4 {
-    grid-column: 4;
-}
-
-.forecastCard5 {
-    grid-column: 5;
-}
-
-.forecastCard1,
-.forecastCard2,
-.forecastCard3,
-.forecastCard4,
-.forecastCard5 {
-    background-color: white;
-    text-align: center;
-    height: 100%;
-    Width: 100%;
-}
-
-.forecastCard1 h4,
-.forecastCard2 h4,
-.forecastCard3 h4,
-.forecastCard4 h4,
-.forecastCard5 h4 {
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-p span {
-    font-weight: bold;
-    margin-right: 1rem;
-}
-
-.localDayFormat {
-    margin-bottom: 0;
-}
-
-.localDateFormat {
-    margin-top: 0;
-}
-
-.detailDiv {
-    margin-left: 2%;
-    text-align: left;
-}
-
-.fiveDayDescription {
-    font-variant: small-caps;
-}
+    html,
+    body {
+        height: 100%;
+        background-color: black;
+    }
+    
+    #wrapper {
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    header {
+        top: 0;
+        background-color: rgba(255, 255, 255 .30)
+    }
+    
+    h1 {
+        background-color: rgba(255, 255, 255, 0.75);
+        margin-top: 0;
+        text-align: center;
+    }
+    
+    aside {
+        max-height: 800px;
+        background-color: white;
+        grid-row-start: 1;
+        grid-row-end: 11;
+    }
+    
+    .prvCities p {
+        text-align: center;
+    }
+    
+    button {
+        border: none;
+        background-color: transparent;
+    }
+    
+    a {
+        margin-left: 10%;
+        width: 80%;
+    }
+    /*Class specifically for not allowing text selection */
+    
+    .noselect {
+        -webkit-touch-callout: none;
+        /* iOS Safari */
+        -webkit-user-select: none;
+        /* Safari */
+        -khtml-user-select: none;
+        /* Konqueror HTML */
+        -moz-user-select: none;
+        /* Old versions of Firefox */
+        -ms-user-select: none;
+        /* Internet Explorer/Edge */
+        user-select: none;
+        /* Non-prefixed version, currently
+supported by Chrome, Edge, Opera and Firefox */
+    }
+    
+    #userSearch {
+        width: 100%;
+        margin-left: 2.5%;
+    }
+    
+    #userSearch:focus {
+        background-color: rgba(0, 0, 0, 0.25)
+    }
+    
+    #citySearch h2 {
+        font-size: 2rem;
+    }
+    
+    main {
+        /* background-color: rgb(255, 255, 255, .5); */
+        display: grid;
+        grid-template-columns: 3fr 8fr;
+        grid-template-rows: repeat(4, 1fr);
+        width: 90%;
+        min-height: 600px;
+        max-height: 800px;
+        margin: 0 5% 1% 5%;
+    }
+    
+    #currentFocus {
+        background-color: rgba(255, 255, 255, 0.5);
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: repeat(5, 1fr);
+        border: 1px solid gray;
+        grid-column: 2;
+        grid-row: 1 / 3;
+        max-height: 300px;
+        margin-bottom: 0;
+    }
+    
+    #curFocusHeader {
+        display: grid;
+        position: relative;
+        grid-template-columns: repeat(5 1fr);
+        grid-template-rows: 1fr 1fr;
+        grid-column: 1/3;
+    }
+    
+    #curFocusHeader h5 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+    
+    #curFocusDecription {
+        grid-row: 2;
+        grid-column: 1/ 3;
+        margin: 0;
+        padding-top: 2.5%;
+        text-align: left;
+        background-color: rgba(233, 233, 233, .75);
+        text-transform: capitalize;
+    }
+    
+    #curFocusDetail {
+        grid-column: 3 /5;
+        grid-row: 2;
+        margin: 0;
+        padding-top: 2%;
+        background-color: rgba(233, 233, 233, 0.75);
+        text-align: left;
+        text-transform: capitalize;
+    }
+    
+    #curFocusH3 {
+        margin: 0;
+        font-weight: bold;
+        border-bottom: 1px solid black;
+        font-variant: small-caps;
+        grid-column: 1 / 5;
+        text-align: center;
+        background-color: rgb(233, 233, 233, .8);
+    }
+    
+    #curDate {
+        margin-top: -1rem;
+        text-align: center;
+    }
+    
+    #curTemp {
+        text-align: center;
+        font-size: 5rem;
+        margin: -10px 0 0 0;
+    }
+    
+    #curFeel {
+        font-size: 1.5rem;
+        margin: 0;
+        padding: 0 0 0 1rem;
+    }
+    
+    .curDayHiLo {
+        margin: 0;
+        font-size: 1.5rem;
+        max-height: 50px;
+        padding-left: 2rem;
+    }
+    
+    #curDayUV {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 4;
+        text-align: center;
+        font-size: 1.5rem;
+        margin: -2.5% 5% 5%;
+        width: 80%;
+        padding-bottom: 4rem;
+    }
+    
+    #curDayUV p {
+        margin: 0;
+    }
+    
+    .uvDanger {
+        background-color: rgba(255, 0, 0, 0.75);
+    }
+    
+    .uvHigh {
+        background-color: rgba(255, 166, 0, 0.75)
+    }
+    
+    .uvCaution {
+        background-color: rgba(255, 255, 0, 0.75);
+    }
+    
+    .uvClear {
+        background-color: rgba(5, 143, 0, 0.75);
+    }
+    
+    #curDayHi {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    #curDayLo {
+        grid-column: 2/ 4;
+        grid-row: 1;
+        /* padding-left: 0; */
+    }
+    
+    #curDayHumidity {
+        grid-column: 1/4;
+        grid-row: 2;
+        padding-top: 1rem;
+    }
+    
+    #curDayWind {
+        grid-column: 1/4;
+        grid-row: 3;
+    }
+    
+    #leftCurDay h5 {
+        text-align: center;
+        margin-top: -.1rem;
+    }
+    
+    #leftCurDay {
+        border-right: 5px solid black;
+        background-color: rgba(255, 255, 255, 0.7);
+        margin-top: 0;
+        padding-top: .5rem;
+        grid-column: 1;
+        grid-row: 2/6;
+        box-shadow: none;
+        margin-bottom: 0;
+        max-height: 100%;
+    }
+    
+    #rightCurDay {
+        display: grid;
+        padding-top: .5rem;
+        grid-template-columns: 45% 10% 45%;
+        grid-template-rows: 10% 20% 20% 20% 10%;
+        gap: 1.5rem;
+        position: relative;
+        background-color: rgba(255, 255, 255, 0.7);
+        margin-top: 0;
+        grid-column: 2 /3;
+        grid-row: 2 /6;
+        box-shadow: none;
+        margin-bottom: 0;
+        max-height: 100%;
+    }
+    
+    #fiveDayContainer {
+        grid-column: 2;
+        grid-row: 3 / 5;
+        max-height: 100%;
+    }
+    
+    .card h4 {
+        text-align: center;
+        font-variant: small-caps;
+    }
+    
+    #fiveDayContainer {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: .5rem;
+        padding: .5rem .5rem;
+    }
+    
+    .forecastCard1 {
+        grid-column: 1;
+    }
+    
+    .forecastCard2 {
+        grid-column: 2;
+    }
+    
+    .forecastCard3 {
+        grid-column: 3;
+    }
+    
+    .forecastCard4 {
+        grid-column: 4;
+    }
+    
+    .forecastCard5 {
+        grid-column: 5;
+    }
+    
+    .forecastCard1,
+    .forecastCard2,
+    .forecastCard3,
+    .forecastCard4,
+    .forecastCard5 {
+        background-color: white;
+        text-align: center;
+        height: 100%;
+        Width: 100%;
+    }
+    
+    .forecastCard1 h4,
+    .forecastCard2 h4,
+    .forecastCard3 h4,
+    .forecastCard4 h4,
+    .forecastCard5 h4 {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    
+    p span {
+        font-weight: bold;
+        margin-right: 1rem;
+    }
+    
+    .localDayFormat {
+        margin-bottom: 0;
+    }
+    
+    .localDateFormat {
+        margin-top: 0;
+    }
+    
+    .detailDiv {
+        margin-left: 2%;
+        text-align: left;
+    }
+    
+    .fiveDayDescription {
+        font-variant: small-caps;
+    }
+    
+    .modal-close,
+    .modal-close p,
+    .modal-close h4 {
+        display: none;
+    }
+    
+    .modal {
+        z-index: 7;
+    }
+    
+    #footer {
+        position: absolute !important;
+        bottom: 0 !important;
+        background-color: black;
+        width: 100%;
+        height: 5%;
+        margin: 0;
+        padding-top: 5%;
+        color: lightgrey;
+        text-align: center;
+    }
+    
+    #footer a {
+        margin: 0;
+    }
+    
+    @media screen and (max-width: 768px) {
+        main {
+            /* background-color: rgb(255, 255, 255, .5); */
+            display: grid;
+            grid-template-columns: repeat(5, 20%);
+            grid-template-rows: repeat(10, 10%);
+            width: 95%;
+            min-height: 600px;
+            height: 100%;
+            margin: 0 2.5% 1% 2.5%;
+        }
+        .cityPanel {
+            margin-top: -2%;
+            padding-bottom: 30%;
+            display: grid;
+            grid-template-columns: repeat(5, 20%);
+            grid-template-rows: repeat(5, 20%);
+            width: 100%;
+            grid-column-start: 1;
+            grid-column-end: 11;
+            grid-row-start: 1;
+            grid-row-end: 3;
+        }
+        #citySearch {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+        .prvCities {
+            grid-column-start: 3;
+            grid-column-end: 6;
+            grid-row-start: 1;
+            grid-row-end: 6;
+        }
+        .card {
+            margin-top: 0.5rem !important;
+            margin-bottom: .5rem !important;
+            margin-left: 5%;
+            width: 90%;
+        }
+        .card h4 {
+            margin-top: 0 !important;
+            margin-bottom: .5rem !important;
+        }
+        #currentFocus {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: repeat(5, 1fr);
+            border: 1px solid gray;
+            grid-column-start: 1;
+            grid-column-end: 11;
+            grid-row-start: 3;
+            grid-row-end: 16;
+            max-height: 300px;
+            margin-bottom: 0;
+        }
+        #fiveDayContainer {
+            padding: 0;
+            margin-top: 3rem;
+            grid-column-start: 1;
+            grid-column-end: 11;
+            grid-row-start: 7;
+            grid-row-end: 11;
+        }
+    }
+    
+    @media screen and (max-width: 607px) {
+        #citySearch h2 {
+            margin: 10% 0;
+            font-size: 1rem;
+            grid-row: 1;
+        }
+        #citySearch a {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 5;
+            width: 95%;
+            margin-left: 2.5%;
+        }
+        #searchBtn {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 4;
+            grid-row-end: 6;
+            margin: 0;
+            padding: 0;
+        }
+    }
+    
+    @media screen and (max-width: 450px) {
+        main {
+            grid-template-columns: repeat(10, 10%);
+            grid-template-rows: repeat(10, 10%);
+        }
+        aside {
+            grid-column-start: 1;
+            grid-column-end: 11;
+            grid-row-start: 1;
+            grid-row-end: 4;
+        }
+        .cityPanel {
+            width: 100%;
+            padding: 0;
+            display: flex;
+            grid-column-start: 1;
+            grid-column-end: 11;
+            grid-row-start: 1;
+            grid-row-end: 3;
+        }
+        .card {
+            flex: 1 0 90%;
+            height: 20%;
+        }
+        .card h4 {
+            font-size: medium;
+            transform: translateY(50%);
+        }
+        #citySearch h2 {
+            margin: 10% 0;
+            font-size: 1rem;
+            grid-row: 1;
+        }
+        #citySearch {
+            display: grid;
+            grid-template-columns: repeat(5, 20%);
+            grid-template-rows: repeat(5, 20%);
+            flex: 0 0 40%;
+        }
+        #userSearch {
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+        }
+        .prvCities {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: 100%;
+            grid-column-start: 7;
+            grid-column-end: 11;
+        }
+        #citySearch {
+            flex: 0 0 50%;
+            border-right: 1rem solid gray;
+        }
+        #citySearch h2 {
+            grid-column-start: 1;
+            grid-column-end: 5;
+        }
+        #userSearch {
+            margin-top: 0;
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 3;
+            grid-row-end: 4;
+        }
+        #citySearch a {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 4;
+            width: 95% !important;
+            margin-top: 1rem !important;
+            margin-left: 2.5%;
+        }
+        #searchBtn {
+            grid-column-start: 1;
+            grid-column-end: 11;
+            grid-row-start: 4;
+            grid-row-end: 6;
+            margin: 0;
+            padding: 0;
+            font-size: small;
+        }
+        .prvCities {
+            flex: 1 1 50%;
+        }
+        .prvCities div {
+            margin: 0!important;
+        }
+        #rightCurDay {
+            width: 100%;
+            height: 100%;
+            margin: 0 !important;
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 2;
+            grid-row-end: 6;
+            gap: 0;
+        }
+        #rightCurDay p {
+            font-size: 1.5rem;
+            padding: 0 0 0 1rem;
+            margin: 0 0 5rem !important;
+        }
+        #curDayHi {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+        #curDayHumidity {
+            grid-row-start: 3;
+        }
+        #curDayUV {
+            grid-row-start: 5;
+        }
+        #curDayWind {
+            grid-row-start: 4
+        }
+        #leftCurDay {
+            height: 100%;
+            width: 100%;
+            margin: 0 !important;
+        }
+        #curFeel {
+            font-size: 1rem;
+        }
+        #fiveDayContainer {
+            grid-column-start: 1;
+            grid-column-end: 11;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-left: 5%;
+        }
+        #fiveDayContainer div {
+            height: 80%;
+        }
+        .forecastCard1,
+        .forecastCard2,
+        .forecastCard3,
+        .forecastCard4 {
+            background-color: white;
+            text-align: center;
+            height: 90%;
+            Width: 45%;
+        }
+        .forecastCard5 {
+            background-color: white;
+            text-align: center;
+            height: 100%;
+            Width: 92%;
+        }
+        #footer {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%)
+        }
+        .detailDiv p {
+            margin: 00 1rem 0;
+            font-size: 1rem;
+        }
+    }

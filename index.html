@@ -19,13 +19,13 @@
     <script defer src="./assets/js/script.js"></script>
 </head>
 
-<body>
-    <header>
+<body id="wrapper">
+    <header class="noselect">
         <h1> WeatherBoard</h1>
     </header>
     <main>
         <aside class="cityPanel">
-            <section id="citySearch">
+            <section class="noselect" id="citySearch">
                 <h2> Search For a City</h2>
                 <input id='userSearch' type="text" placeholder="Chicago">
                 <a class="waves-effect waves-light btn">
@@ -33,28 +33,40 @@
                 </a>
             </section>
             <section class="prvCities">
-                <p id='noRecent'>
-                    Sorry, There hasn 't been a recent search yet.
+                <p class="noselect" id='noRecent'>
+                    Sorry, There hasn't been a recent search yet.
                     <br> Try one now!
                 </p>
             </section>
         </aside>
         <section id='currentFocus'>
-            <header class='curFocus' id='curFocusHeader'>
+            <header class="noselect curFocus" id="curFocusHeader">
                 <h3 id="curFocusH3"></h3>
             </header>
 
-            <div class="card" id="leftCurDay">
+            <div class="noselect card" id="leftCurDay">
 
             </div>
-            <div class="card" id="rightCurDay">
+            <div class="noselect card" id="rightCurDay">
 
             </div>
         </section>
-        <section id="fiveDayContainer">
+        <section class="noselect" id="fiveDayContainer">
         </section>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content noselect">
+                <h4>Sorry</h4>
+                <p>Your search returned no results.</p>
+                <p>Currently, searches are restricted to city names.<br><i>(ie Chicago, New York, Dallas)</i></p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </div>
     </main>
     <footer id="footer">
+        Made by <a href="http://github.com/Proto133">Peter Roto</a>
     </footer>
     <!-- CDN example (unpkg) -->
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
