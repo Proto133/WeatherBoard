@@ -29,6 +29,7 @@ function storeRecent() {
     $('#rightCurDay').children().remove();
     $('#curFocusHeader').children().remove();
     userInput = $('#userSearch').val();
+
     if (labelIndex <= 5) {
         localStorage.setItem('Recent Search ' + labelIndex, userInput);
     } else {
@@ -39,12 +40,16 @@ function storeRecent() {
     updateRecent();
 }
 
-//UDPDATE RECENT SEARCH LIST
+var recCityDivEl
+var recCity
+var recCityH4El
+    //UDPDATE RECENT SEARCH LIST
 function updateRecent() {
     $('#recentcityDiv' + labelIndex).remove();
-    var recentCity = localStorage.getItem('Recent Search ' + labelIndex);
-    var recCityDivEl = $('<div class="card" id="recentcityDiv' + labelIndex + '" onclick="recentClick()">');
-    var recCityH4El = $('<h4>' + recentCity + '</h4></div>')
+    recentCity = localStorage.getItem('Recent Search ' + labelIndex);
+    recCityDivEl = $('<div class="card" id="recentcityDiv' + labelIndex + '">');
+    recCityH4El = $('<h4>' + recentCity + '</h4></div>')
+    recCityH4El.attr('data-name', recentCity)
     $('#noRecent').remove();
     $('#recentcityDiv' + labelIndex).remove();
     console.log('#recentcityDiv' + labelIndex);
@@ -55,8 +60,16 @@ function updateRecent() {
     requestAPI();
 }
 
+function clearInput() {
+    document.getElementById('userSearch').value = ''
+}
+
 //AJAX REQUEST
 function requestAPI() {
+    $('#fiveDayContainer').children().remove('div');
+    $('#leftCurDay').children().remove();
+    $('#rightCurDay').children().remove();
+    $('#curFocusHeader').children().remove();
     $.ajax({
         url: baseUrl + userInput + extraParams + apiKey,
         method: 'GET',
@@ -68,6 +81,8 @@ function requestAPI() {
         console.log(respData);
         var h3El = $('<h3 id=curFocusH3>' + respName + '</h3>');
         $('#curFocusHeader').append(h3El);
+        clearInput();
+
     }).then(function() {
         $.ajax({
             url: oneCallBaseUrl + latitudeResp + longitudeResp + extraParams + excludeOptions + apiKey,
@@ -185,17 +200,19 @@ function requestAPI() {
                     $('#curDayUV').removeClass('uvHigh uvClear uvCaution');
                     $('#curDayUV').addClass('uvDanger')
                 }
+
             })
         })
+
     })
+
 }
 
-function recentClick() {
-    userInput = this.value;
-    console.log(this.value);
-    storeRecent();
-}
-
+$('.prvCities').on('click', '.card', function(event) {
+    userInput = $(event.target).attr('data-name')
+    console.log(event.target)
+    requestAPI();
+})
 
 $('.btn').on('click', storeRecent);
 // $('#searchBtn').on('click', displayForecast);

@@ -134,13 +134,14 @@ main {
 }
 
 #curDayUV {
-    grid-column: 1 / 4;
-    grid-row: 4;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 4;
     text-align: center;
     font-size: 1.5rem;
     max-width: 80%;
     margin: 0 5%;
-    padding-bottom: 15%;
+    padding-bottom: 4rem;
 }
 
 .uvDanger {
@@ -215,7 +216,7 @@ main {
 }
 
 #fiveDayContainer {
-    background-color: violet;
+    /* background-color: violet; */
     grid-column: 2;
     grid-row: 3 / 5;
     max-height: 400px;
