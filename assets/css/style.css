@@ -553,6 +553,11 @@ supported by Chrome, Edge, Opera and Firefox */
         .prvCities div {
             margin: 0!important;
         }
+        #currentFocus {
+            margin-top: 0;
+            grid-row-start: 3;
+            grid-row-end: 16;
+        }
         #rightCurDay {
             width: 100%;
             height: 100%;
@@ -598,7 +603,7 @@ supported by Chrome, Edge, Opera and Firefox */
             margin-left: 5%;
         }
         #fiveDayContainer div {
-            height: 80%;
+            height: 90%;
         }
         .forecastCard1,
         .forecastCard2,
