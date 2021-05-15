@@ -210,8 +210,8 @@ function requestAPI() {
                 var curDayUV = curInfo.uvi
                 var curDayWindSpeed = curInfo.wind_speed
                 var curDayHumidity = curInfo.humidity
-
-                //Add HTML Elements for Current Day
+                    //Add HTML Elements for Current Day
+                var imgIcon = $('<img id="imageIcon"></img>')
                 var curDayEl = $('<h5>' + curDay + '</h5>')
                 var curDateEl = $('<p id="curDate">' + curDate + '</p>')
                 var curDayDescEl = $('<h5 id="curFocusDecription">' + curDayDesc + '</h5>')
@@ -229,12 +229,12 @@ function requestAPI() {
                     backgroundImage: "url(https://loremflickr.com/900/900/" + trimCurDetail + "," + trimCity + ";",
                     boxShadow: "1px 4px 11px 4px rgba(0, 0, 0, 0.34);",
                 }
-                console.log(curFocusStyles.backgroundImage)
 
                 //Appending Header
                 $('#curFocusHeader').append(curDayDescEl);
                 $('#curFocusHeader').append(curDayDetailEl);
                 //Appending Left Panel
+                $('#curFocusHeader').append(imgIcon)
                 $('#leftCurDay').append(curDayEl);
                 $('#leftCurDay').append(curDateEl);
                 $('#leftCurDay').append(curDayTempEl);
@@ -265,10 +265,23 @@ function requestAPI() {
                     }
 
                 })
+
+                $(function() {
+                    //Add icon depending on weather
+                    if (curDayDesc.indexOf("Cloud") >= 0) {
+                        imageIcon.src = "assets/images/cloud.png"
+                        imageIcon.css('backgroundColor:white;')
+                    } else if (curDayDesc.indexOf("Snow") >= 0) {
+                        imageIcon.src = "assets/images/snow.png"
+                    } else if (curDayDesc.indexOf("Rain") >= 0) {
+                        imageIcon.src = "assets/images/rain.png"
+                    } else {
+                        imageIcon.src = "assets/images/clear.png"
+                    }
+                })
+
             })
-
         })
-
 }
 
 $('.prvCities').on('click', '.card', function(event) {
